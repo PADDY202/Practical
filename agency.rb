@@ -13,24 +13,50 @@ class Agency
 
   def create_teams
     self.sort_teams
-    @male_curlers.each_with_index {|x, index| puts"(#{@female_curlers[index].name}, #{x.name}) Satisfaction: #{self.satisfaction(x,@female_curlers[index])}"  }
+    teams = []
+    @male_curlers.each_with_index {|x, index| teams[index]=[@female_curlers[index], x]
+    puts"(#{@female_curlers[index].name}, #{x.name}) Satisfaction: #{self.satisfaction(x,@female_curlers[index])}"  }
+    teams
   end
 
   def sort_teams
-    @male_curlers.sort!
-    @male_curlers.sort!
+    @male_curlers = @male_curlers.sort.reverse
+    @female_curlers = @female_curlers.sort.reverse
+
   end
+
+
+
+
+  def overall_fitness( teams )
+    score = 0
+    teams.each { |x| score = score + self.satisfaction(x[0], x[1])}
+     score
+  end
+#attempt
+  def first_ascent_hill_climb
+  teams = self.create_teams
+  temp_teams = teams
+  teams.each_with_index{|x, index| teams.each_with_index{|y, move_index|  temp_teams[index][0] = temp_teams[index][0]  }   }
+  end
+
   def satisfaction (male, female)
-    if male.proficiency > female.proficiency
-      score =   female.proficiency - male.proficiency
+    comparefemale = male.proficiency <=>(female.proficiency_requirements)
+    comparemale = female.proficiency <=>(male.proficiency_requirements)
+
+    if  comparefemale == -1
+      score =   (male.proficiency - female.proficiency_requirements) / 2.to_f
+
+      elsif comparemale == -1
+      score = (female.proficiency - male.proficiency_requirements)/2.to_f
+
+    else
+      score = 0
     end
-    if male.proficiency < female.proficiency
-      score =   male.proficiency - female.proficiency
-    end
-    if male.proficiency == female.proficiency
-      score =  0
-    end
+
     return score
+
   end
+
 
 end

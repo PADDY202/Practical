@@ -19,5 +19,9 @@ class Main
 
 
   agency = Agency.new(male_curlers, female_curlers)
+  agency.state_of_agency
+  puts""
   agency.create_teams
+#  puts agency.overall_fitness(  agency.create_teams)
+
 end
