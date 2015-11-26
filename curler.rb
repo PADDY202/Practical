@@ -1,0 +1,2 @@
+class Curler
+end
