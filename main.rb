@@ -19,5 +19,5 @@ class Main
 
 
   agency = Agency.new(male_curlers, female_curlers)
-  agency.state_of_agency
+  agency.create_teams
 end
