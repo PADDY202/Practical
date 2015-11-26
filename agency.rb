@@ -7,6 +7,8 @@ class Agency
   def state_of_agency
     puts "MALE CURLERS:"
     @male_culers.each { |x| puts "#{x.name}'s proficiency is #{x.proficiency}. Seeks partner with proficiency >= #{x.proficiency_requirements}" }
+    puts "FEMALE CURLERS:"
+    @female_curlers.each { |x| puts "#{x.name}'s proficiency is #{x.proficiency}. Seeks partner with proficiency >= #{x.proficiency_requirements}" }
 
   end
 
