@@ -13,12 +13,24 @@ class Agency
 
   def create_teams
     self.sort_teams
-    @male_curlers.each_with_index {|x, index| puts"(#{@female_curlers[index].name}, #{x.name}) Satisfaction: "  }
+    @male_curlers.each_with_index {|x, index| puts"(#{@female_curlers[index].name}, #{x.name}) Satisfaction: #{self.satisfaction(x,@female_curlers[index])}"  }
   end
 
   def sort_teams
     @male_curlers.sort!
     @male_curlers.sort!
+  end
+  def satisfaction (male, female)
+    if male.proficiency > female.proficiency
+      score =   female.proficiency - male.proficiency
+    end
+    if male.proficiency < female.proficiency
+      score =   male.proficiency - female.proficiency
+    end
+    if male.proficiency == female.proficiency
+      score =  0
+    end
+    return score
   end
 
 end
