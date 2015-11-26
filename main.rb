@@ -22,6 +22,9 @@ class Main
   agency.state_of_agency
   puts""
   agency.create_teams
+
+  #puts agency.each_curler.name
+
 #  puts agency.overall_fitness(  agency.create_teams)
 
 end

@@ -57,6 +57,12 @@ class Agency
     return score
 
   end
+# needs to be changed so that it does not exist the method after return
+  def each_curler
+    @male_curlers.each { |x| return x }
+    @female_curlers.each { |x| return x }
+
+  end
 
 
 end
